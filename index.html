@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="favicon.ico"> 
+    <title>greglahaye.dev</title>
+    <style>
+body {
+  padding-top: 3rem;
+}
+    .jumbotron {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+      margin-bottom: 0;
+      background-color: #fff;
+    }
+    @media (min-width: 768px) {
+      .jumbotron {
+        padding-top: 6rem;
+        padding-bottom: 3rem;
+      }
+      .jumbotron p:last-child {
+        margin-bottom: 0;
+      }
+      .jumbotron-heading {
+        font-weight: 300;
+      }
+      .jumbotron .container {
+        max-width: 40rem;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-dark fixed-top bg-dark">
+      <a class="navbar-brand" href="#">Greg Lahaye</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbar">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://github.com/GregLahaye">GitHub</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="mailto:greg@lahayes.net">Email</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <main role="main">
+    <section class="jumbotron text-center">
+      <div class="container">
+        <h1 class="jumbotron-heading">Greg Lahaye's Portfolio</h1>
+        <p class="lead text-muted">Check out some of my favourite projects.</p>
+        <p>
+        <a href="https://www.github.com/GregLahaye" class="btn btn-primary">GitHub Profile</a>
+        </p>
+      </div>
+    </section>
+    <div class="container">
+      <div class="card-group">
+      </div>
+    </div>
+    </main>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+      $.getJSON('https://website-66242.firebaseio.com/projects.json', function(data) {
+        $.each(data, function(index, project) {
+          const card = $(`<div class="col-md-4">
+<div class="card mb-4 bg-light">
+<div class="card-body">
+<h4 class="card-title">${project.title}</h4>
+<h6 class="card-subtitle mb-2 text-muted">${project.tags.join(', ')}</h6>
+<p class="card-text">${project.description}</p>
+<a href="${project.link}" class="btn btn-primary">${project.button}</a>
+</div>
+</div>
+</div>`);
+
+          $('.card-group').append(card);
+        });
+      });
+
+    </script>
+  </body>
+</html>
